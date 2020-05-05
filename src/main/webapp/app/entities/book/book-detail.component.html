@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="book">
+            <h2><span jhiTranslate="jhipsterApp.book.detail.title">Book</span> {{ book.id }}</h2>
+
+            <hr>
+
+            <jhi-alert-error></jhi-alert-error>
+
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="jhipsterApp.book.bookTitle">Book Title</span></dt>
+                <dd>
+                    <span>{{ book.bookTitle }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.book.author">Author</span></dt>
+                <dd>
+                    <span>{{ book.author }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.book.publisher">Publisher</span></dt>
+                <dd>
+                    <span>{{ book.publisher }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.book.publicationDate">Publication Date</span></dt>
+                <dd>
+                    <span>{{ book.publicationDate }}</span>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.book.data">Data</span></dt>
+                <dd>
+                    <div *ngIf="book.data">
+                        <a (click)="openFile(book.dataContentType!, book.data)" jhiTranslate="entity.action.open">open</a>
+                        {{ book.dataContentType }}, {{ byteSize(book.data) }}
+                    </div>
+                </dd>
+                <dt><span jhiTranslate="jhipsterApp.book.category">Category</span></dt>
+                <dd>
+                    <div *ngIf="book.categoryId">
+                        <a [routerLink]="['/category', book.categoryId, 'view']">{{ book.categoryId }}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon icon="arrow-left"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back">Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/book', book.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon icon="pencil-alt"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit">Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

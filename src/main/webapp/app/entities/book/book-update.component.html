@@ -1,0 +1,81 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <form name="editForm" role="form" novalidate (ngSubmit)="save()" [formGroup]="editForm">
+            <h2 id="jhi-book-heading" jhiTranslate="jhipsterApp.book.home.createOrEditLabel">Create or edit a Book</h2>
+
+            <div>
+                <jhi-alert-error></jhi-alert-error>
+
+                <div class="form-group" [hidden]="!editForm.get('id')!.value">
+                    <label for="id" jhiTranslate="global.field.id">ID</label>
+                    <input type="text" class="form-control" id="id" name="id" formControlName="id" readonly />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.book.bookTitle" for="field_bookTitle">Book Title</label>
+                    <input type="text" class="form-control" name="bookTitle" id="field_bookTitle"
+                           formControlName="bookTitle"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.book.author" for="field_author">Author</label>
+                    <input type="text" class="form-control" name="author" id="field_author"
+                           formControlName="author"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.book.publisher" for="field_publisher">Publisher</label>
+                    <input type="text" class="form-control" name="publisher" id="field_publisher"
+                           formControlName="publisher"/>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.book.publicationDate" for="field_publicationDate">Publication Date</label>
+                    <div class="input-group">
+                        <input id="field_publicationDate" type="text" class="form-control" name="publicationDate" ngbDatepicker #publicationDateDp="ngbDatepicker" formControlName="publicationDate"/>
+                        <span class="input-group-append">
+                            <button type="button" class="btn btn-secondary" (click)="publicationDateDp.toggle()"><fa-icon icon="calendar-alt"></fa-icon></button>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.book.data" for="field_data">Data</label>
+                    <div>
+                        <div *ngIf="editForm.get('data')!.value" class="form-text text-danger clearfix">
+                            <a class="pull-left" (click)="openFile(editForm.get('dataContentType')!.value, editForm.get('data')!.value)" jhiTranslate="entity.action.open">open</a><br>
+                            <span class="pull-left">{{ editForm.get('dataContentType')!.value }}, {{ byteSize(editForm.get('data')!.value) }}</span>
+                            <button type="button" (click)="editForm.patchValue({data: null});editForm.patchValue({dataContentType: null});"
+                                    class="btn btn-secondary btn-xs pull-right">
+                                <fa-icon icon="times"></fa-icon>
+                            </button>
+                        </div>
+                        <input type="file" id="file_data" (change)="setFileData($event, 'data', false)" jhiTranslate="entity.action.addblob"/>
+                    </div>
+                    <input type="hidden" class="form-control" name="data" id="field_data"
+                           formControlName="data"/>
+                    <input type="hidden" class="form-control" name="dataContentType" id="field_dataContentType"
+                           formControlName="dataContentType" />
+                </div>
+
+                <div class="form-group">
+                    <label class="form-control-label" jhiTranslate="jhipsterApp.book.category" for="field_category">Category</label>
+                    <select class="form-control" id="field_category" name="category" formControlName="categoryId">
+                        <option [ngValue]="null"></option>
+                        <option [ngValue]="categoryOption.id" *ngFor="let categoryOption of categories; trackBy: trackById">{{ categoryOption.categoryDescription }}</option>
+                    </select>
+                </div>
+            </div>
+
+            <div>
+                <button type="button" id="cancel-save" class="btn btn-secondary" (click)="previousState()">
+                    <fa-icon icon="ban"></fa-icon>&nbsp;<span jhiTranslate="entity.action.cancel">Cancel</span>
+                </button>
+
+                <button type="submit" id="save-entity" [disabled]="editForm.invalid || isSaving" class="btn btn-primary">
+                    <fa-icon icon="save"></fa-icon>&nbsp;<span jhiTranslate="entity.action.save">Save</span>
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

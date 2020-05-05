@@ -1,0 +1,27 @@
+{
+  "jhipsterApp": {
+    "book": {
+      "home": {
+        "title": "Books",
+        "createLabel": "Yangi Book qo`shish",
+        "createOrEditLabel": "Bookni tahrirlash",
+        "notFound": "No Books found"
+      },
+      "created": "Book {{ param }} bilan qo`shildi",
+      "updated": "{{ param }}- Book saqlandi",
+      "deleted": "{{ param }}- Book o`chirildi",
+      "delete": {
+        "question": "{{ id }}- Bookni o`chirmoqchimisiz? "
+      },
+      "detail": {
+        "title": "Book"
+      },
+      "bookTitle": "Book Title",
+      "author": "Author",
+      "publisher": "Publisher",
+      "publicationDate": "Publication Date",
+      "data": "Data",
+      "category": "Category"
+    }
+  }
+}

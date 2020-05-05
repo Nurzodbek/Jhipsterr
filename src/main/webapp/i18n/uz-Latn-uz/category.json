@@ -1,0 +1,22 @@
+{
+  "jhipsterApp": {
+    "category": {
+      "home": {
+        "title": "Categories",
+        "createLabel": "Yangi Category qo`shish",
+        "createOrEditLabel": "Categoryni tahrirlash",
+        "notFound": "No Categories found"
+      },
+      "created": "Category {{ param }} bilan qo`shildi",
+      "updated": "{{ param }}- Category saqlandi",
+      "deleted": "{{ param }}- Category o`chirildi",
+      "delete": {
+        "question": "{{ id }}- Categoryni o`chirmoqchimisiz? "
+      },
+      "detail": {
+        "title": "Category"
+      },
+      "categoryDescription": "Category Description"
+    }
+  }
+}

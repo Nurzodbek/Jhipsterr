@@ -1,0 +1,25 @@
+entity Book{
+	bookTitle String,
+    author String,
+    publisher String,
+    publicationDate LocalDate,
+	data Blob
+}
+
+entity Category{
+	categoryDescription String
+}
+
+relationship OneToOne {
+   Book{category} to Category,
+}
+
+
+
+paginate * with pagination
+
+dto * with mapstruct
+
+service * with serviceClass
+
+filter  Category, Book

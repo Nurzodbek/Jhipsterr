@@ -27,6 +27,11 @@ export const createRequestOption = (req?: any): HttpParams => {
         options = options.append('sort', val);
       });
     }
+    if (req.criteria && req.criteria.length > 0) {
+      req.criteria.forEach((criterion: { key: string; value: string }) => {
+        options = options.append(criterion.key, criterion.value);
+      });
+    }
   }
 
   return options;
